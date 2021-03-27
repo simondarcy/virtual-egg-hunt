@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no">
+    <link rel="icon" href="icon.png" sizes="192x192" />
+    <title>Easter Egg Hunt</title>
+    <meta name="description" content="">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="HandheldFriendly" content="true" />
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+
+
+
+    <style type="text/css">
+
+
+        .container{
+
+            padding-top: 1rem;
+            max-width: 960px;
+        }
+        /* Center align the text within the three columns below the carousel */
+.marketing .col-lg-4 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.marketing h2 {
+  font-weight: 400;
+}
+.marketing .col-lg-4 p {
+  margin-right: .75rem;
+  margin-left: .75rem;
+}
+
+.bi-check{
+    display: none;
+    color:#abff29;
+    font-size: 4rem;
+    position: absolute;
+    left: 25%;
+    top: 10%;
+}
+
+.modal-content{
+    text-align: center;
+}
+.modal-content img.egg{
+    margin-bottom: 1rem;
+}
+
+.modal-footer h5{
+    margin: auto;
+}
+
+.card.found .bi-check{
+ display: block;
+}
+
+.header{
+    text-align: center;
+}
+    .card{
+        text-align: center;
+        padding: .5rem;
+        border: 0;
+        position: relative;
+    }
+    .card.found{
+        /* background-color: yellowgreen; */
+    }
+    .card img{
+        margin: auto;
+    }
+    .card p{
+        margin: 1rem 0 0;
+    }
+#reader{}
+.camera{
+    display: none;;
+    background: white;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+}
+    </style>
+    
+
+</head>
+<body>
+
+
+    <!-- <a href="https://www.vecteezy.com/free-vector/pattern">Pattern Vectors by Vecteezy</a> -->
+    <div class="container marketing">
+        <div class="row header">
+            <div class="col-md-12">
+                <h4>Easter Egg Hunt</h4>
+            
+                <hr/>
+
+                <p>Find all 9 eggs to win a prize</p>
+
+                <div class="camera" id="camera">
+                        <h3>Scan Code</h3>
+                        <hr/>
+                        <!-- Reader will be used to capture -->
+                        <div id="reader"></div>
+                        <p><a class="btn btn-danger" onclick="closeCamera();" href="#" role="button">Close</a></p>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-4 card" data-id="1">
+                      <img class="egg" src="images/egg-1.png" alt="Generic placeholder image" width="50" height="80">
+                      <i class="bi-check"></i>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-4 card" data-id="2">
+                      <img class="egg" src="images/egg-2.png" alt="Generic placeholder image" width="50" height="80">
+                      <i class="bi-check"></i>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-4 card" data-id="3">
+                      <img class="egg" src="images/egg-3.png" alt="Generic placeholder image" width="50" height="80">
+                      <i class="bi-check"></i>
+                    </div><!-- /.col-lg-4 -->
+                  </div>
+
+                  <div class="row mb-4">
+                    <div class="col-4 card" data-id="4">
+                      <img class="egg" src="images/egg-4.png" alt="Generic placeholder image" width="50" height="80">
+                      <i class="bi-check"></i>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-4 card" data-id="5">
+                      <img class="egg" src="images/egg-5.png" alt="Generic placeholder image" width="50" height="80">
+                      <i class="bi-check"></i>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-4 card" data-id="6">
+                      <img class="egg" src="images/egg-6.png" alt="Generic placeholder image" width="50" height="80">
+                      <i class="bi-check"></i>
+                    </div><!-- /.col-lg-4 -->
+                  </div>
+
+                  <div class="row mb-4">
+                    <div class="col-4 card" data-id="7">
+                      <img class="egg" src="images/egg-7.png" alt="Generic placeholder image" width="50" height="80">
+                      <i class="bi-check"></i>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-4 card" data-id="8">
+                      <img class="egg" src="images/egg-8.png" alt="Generic placeholder image" width="50" height="80">
+                      <i class="bi-check"></i>
+                    </div><!-- /.col-lg-4 -->
+                    <div class="col-4 card" data-id="9">
+                      <img class="egg" src="images/egg-9.png" alt="Generic placeholder image" width="50" height="80">
+                      <i class="bi-check"></i>
+                    </div><!-- /.col-lg-4 -->
+                  </div>
+
+
+                  <div class="row">
+
+                    <div class="col-12">
+                    <button id="submit-btn" onclick="scan()" class="btn btn-primary btn-lg btn-block">Scan</button>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="found-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Well done!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <img class="egg" id="modal-egg" src="images/egg-9.png" alt="Easter Egg" >
+          <h3>You found another egg</h3>
+        </div>
+        <div class="modal-footer">
+          <h5>Only <span id="eggs-left">8</span> more to find!</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- https://github.com/mebjas/html5-qrcode -->
+    <script src="vendor/html5-qrcode.min.js"></script>
+     <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="vendor/popper.js"></script>
+    <script src="vendor/bootstrap.min.js"></script>
+
+    <script>
+
+//check local storage for this data
+var eggsData = {
+    'found':0,
+    'total':9,
+    'eggs':[
+{'id':1, 'status':'hidden'},
+{'id':2, 'status':'hidden'},
+{'id':3, 'status':'hidden'},
+{'id':4, 'status':'hidden'},
+{'id':5, 'status':'hidden'},
+{'id':6, 'status':'hidden'},
+{'id':7, 'status':'hidden'},
+{'id':8, 'status':'hidden'},
+{'id':9, 'status':'hidden'}
+]};
+
+
+window.onload = function() {
+
+
+    if (typeof(Storage) !== "undefined") {
+    // Code for localStorage/sessionStorage.
+    if(localStorage.getItem("eggData") != null ){
+        eggsData = JSON.parse(localStorage.getItem('eggData'));
+        for (let i = 0; i < eggsData.eggs.length; i++) {
+            console.log(eggsData.eggs[i]);
+            if (eggsData.eggs[i].status == "found"){
+                console.log(eggsData.eggs[i].id)
+                document.querySelector('[data-id="'+eggsData.eggs[i].id+'"]').classList.add("found");
+
+            }
+        }
+
+    }
+    } else {
+    // Browser does not support loca storage, do nothing
+    }
+
+    
+
+};
+
+        var cameraId;
+        const html5QrCode = new Html5Qrcode("reader");
+        // This method will trigger user permissions
+        Html5Qrcode.getCameras().then(devices => {
+        /**
+        * devices would be an array of objects of type:
+        * { id: "id", label: "label" }
+        */
+        if (devices && devices.length) {
+            cameraId = devices[0].id;
+            
+            
+        }
+        }).catch(err => {
+        // handle err
+        });
+
+
+        function clearStorage(){
+            if (typeof(Storage) !== "undefined") {
+                localStorage.clear();
+            }
+        }
+        function closeCamera(){
+            
+            document.getElementById('camera').style.display = "none";
+            html5QrCode.stop();
+            html5QrCode.clear();
+        }
+
+        function handleScan(id){
+            
+            let eggData = eggsData.eggs[id-1];
+            if(eggData.status == 'hidden'){
+                closeCamera();
+                
+                let eggDiv = document.querySelector('[data-id="'+id+'"]');
+                eggDiv.classList.add('found');
+                eggData.status = 'found';
+                eggsData.found++;
+                console.log("you have found ", eggsData.found);
+                //Update storage
+                if (typeof(Storage) !== "undefined") {
+                    localStorage.setItem('eggData', JSON.stringify(eggsData));
+                }
+                if(eggData.found==9){
+                    //end gae
+                    alert("you have won!");
+                    clearStorage();
+                }
+                //Update found modal image
+                document.getElementById('modal-egg').setAttribute('src', 'images/egg-'+id+'.png');
+                document.getElementById('eggs-left').innerText = (eggsData.total -  eggsData.found);
+                $('#found-modal').modal();
+                
+            }else{
+                alert('You have already found this egg');
+            }
+            
+        }
+
+        function scan(){
+
+            document.getElementById('camera').style.display = "block";
+
+            // Create instance of the object. The only argument is the "id" of HTML element created above.
+
+
+html5QrCode.start(
+    
+  { facingMode: "environment" },
+  {
+    facingMode: "environment",
+    fps: 10,    // sets the framerate to 10 frame per second
+    qrbox: 250  // sets only 250 X 250 region of viewfinder to
+                // scannable, rest shaded.
+  },
+  qrCodeMessage => {
+    // do something when code is read. For example:
+    console.log(`QR Code detected: ${qrCodeMessage}`);
+
+    let id = parseInt(qrCodeMessage);
+
+    if(id > 0 && id < 10){
+        handleScan(id);
+    }
+    
+    //QRcode will be an ID, match id to one of the eggs
+  },
+  errorMessage => {
+    // parse error, ideally ignore it. For example:
+    //console.log(`QR Code no longer in front of camera.`);
+  })
+.catch(err => {
+  // Start failed, handle it. For example,
+  console.log(`Unable to start scanning, error: ${err}`);
+});
+
+
+        }
+
+
+    </script>
+
+</body>
+</html>
